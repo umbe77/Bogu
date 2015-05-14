@@ -1,2 +1,2 @@
 # Bogu
-Bogu SPA Framework
+Bogu SPA Framework Alpha version
