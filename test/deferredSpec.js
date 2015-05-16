@@ -1,4 +1,4 @@
-describe("Bog $deferred module", function(){
+describe("Bogu $deferred module", function(){
 	it("resolve promise", function(done){
 		bogu.module(["$d", "$common"], function($d, $common){
 			function testPromise(){
