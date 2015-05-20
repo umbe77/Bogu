@@ -43,6 +43,20 @@ describe("Bogu $observer module", function() {
 			});
 		});
 
+		it("observable with functions", function(){
+			bogu.module(["$observer"], function($observer){
+				var obj = $observer.makeObservable({
+					name: "Roberto",
+					surname: "Ughi",
+					getFullName: function(){
+						return this.name + " " + this.surname;
+					}
+				});
+
+				expect(obj.getFullName()).toEqual("Roberto Ughi");
+			});
+		});
+
 		it("observable check new / old Values", function(){
 			bogu.module(["$observer"], function($observer){
 				var obj = $observer.makeObservable({
