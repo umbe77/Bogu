@@ -4,7 +4,6 @@
 
 	function domCompiler(bogu) {
 		var elementsToParse = document.querySelectorAll("[data-view]");
-		console.log(elementsToParse.length);
 		for (var i = 0; i < elementsToParse.length; ++i) {
 			var element = elementsToParse[i];
 			var viewName = element.dataset.view;
@@ -17,12 +16,18 @@
 					viewModel.on(bindElements[j].dataset.bind, function(newVal, oldVal){
 						bindElement.textContent = newVal;
 					});
-					bindElement.textContent = viewModel[bindElements[j].dataset.bind];
+
+					var val = viewModel;
+					bindElements[j].dataset.bind.split(".").every(function(item){
+						val = val[item];
+						return val;
+					});
+
+					bindElement.textContent = val;
 				}
 
 				var commandElements = element.querySelectorAll("[data-command-click]");
 				for (var k = 0; k< commandElements.length; ++k){
-					console.log(JSON.stringify(commandElements[k].dataset));
 					var func = new Function("viewModel", "with(viewModel) {" + commandElements[k].dataset.commandClick + "}");
 
 					commandElements[k].addEventListener("click", function(){ func(viewModel); });

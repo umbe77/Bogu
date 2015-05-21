@@ -6,6 +6,7 @@
 <body>
 
  	<div data-view="titleView">
+ 		<h2 data-bind="complex.title"></h2>
  		<h3 data-bind="message"></h3>
  		<button data-command-click="changeMessage()">Click Me!</button>
  	</div>
@@ -21,6 +22,9 @@
 			bogu.viewModel("titleViewModel", function(){
 				return {
 					message: "Hello, World!!!",
+					complex: {
+						title: "Page Title"
+					},
 					changeMessage: function(){
 						this.message = "Here a new Message!!!!";
 					}
